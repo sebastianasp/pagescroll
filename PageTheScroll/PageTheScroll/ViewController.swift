@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var images = [UIImageView]()
+    var contentWidth: CGFloat = 0.0
 
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -26,10 +27,14 @@ class ViewController: UIViewController {
             
             newX = view.frame.midX + view.frame.size.width * CGFloat(x)
             
+            contentWidth += newX
+            
             scrollView.addSubview(imageView)
             
             imageView.frame = CGRect(x: newX - 75, y: (view.frame.size.height / 2) - 75, width: 150, height: 150)
         }
+        
+        scrollView.contentSize = CGSize(width: contentWidth, height: view.frame.size.height)
         
     }
 }
